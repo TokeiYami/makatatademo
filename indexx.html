@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MAKATATA SMASHBURGER</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <img src=images/logo.jpg>
+  </header>
+
+  <div class="info-bar">
+    <div class="info">
+      🏍️ <span>DELIVERY 15 - 30 min</span><br>
+      ₱50.00 delivery or free with ₱500.00 spend
+    </div>
+    <div class="info">
+      🚶 <span>PICKUP 5 min</span><br>
+      No min. order
+    </div>
+  </div>
+
+  <section class="menu" id="menu">
+    <div class="menu-item">
+      <img src= images/sing.jpg
+      <div class="menu-text">
+        <h3>SMASHBURGER SINGLE</h3>
+        <p>Juicy single patty with cheese, veggies, and signature sauce.</p>
+        <p class="price">₱150.00</p>
+        <button class="add-btn" onclick="addToCart('Smashburger Single', 150)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <img src=images/double.jpg>
+        <h3>SMASHBURGER DOUBLE</h3>
+        <p>Two smashed patties stacked with cheese and sauce.</p>
+        <p class="price">₱220.00</p>
+        <button class="add-btn" onclick="addToCart('Smashburger Double', 220)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <img src=images/crazy.jpg>
+      <div class="menu-text">
+        <h3>CRAZY FRIES</h3>
+        <p>Fries topped with chopped patty and maka sauce.</p>
+        <p class="price">₱170.00</p>
+        <button class="add-btn" onclick="addToCart('Crazy Fries', 170)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <img src=images/icedtea.png>
+        <h3>ICED TEA</h3>
+        <p>Refreshing, perfectly brewed iced tea.</p>
+        <p class="price">₱65.00</p>
+        <button class="add-btn" onclick="addToCart('Iced Tea', 65)">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="cart">
+    <h2>YOUR CART</h2>
+    <div id="cart-items"></div>
+    <p id="total">Total: ₱0.00</p>
+    <button id="checkout-btn" onclick="checkout()">CHECKOUT</button>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

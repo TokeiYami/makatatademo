@@ -3,72 +3,426 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MAKATATA SMASHBURGER</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Makatata Smashburger</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #2b2b2b;
+      color: white;
+    }
+
+    header {
+      background-color: #1f1f1f;
+      text-align: center;
+      padding: 20px;
+    }
+
+    header img {
+      height: 60px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    header h1 {
+      display: inline-block;
+      font-size: 2.5rem;
+      margin: 0;
+      color: #fdd835;
+      vertical-align: middle;
+    }
+
+    .order-type {
+      background-color: #1f1f1f;
+      text-align: center;
+      padding: 20px;
+      border-bottom: 2px solid #fdd835;
+    }
+
+    .order-type h3 {
+      color: #fdd835;
+      margin: 0 0 15px 0;
+    }
+
+    .order-type-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .order-type-btn {
+      background-color: #3a3a3a;
+      color: white;
+      border: 2px solid #555;
+      padding: 12px 30px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+
+    .order-type-btn:hover {
+      background-color: #4a4a4a;
+      border-color: #fdd835;
+    }
+
+    .order-type-btn.active {
+      background-color: #fdd835;
+      color: black;
+      border-color: #fdd835;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .menu-item {
+      background-color: #3a3a3a;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s ease;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .menu-item h2 {
+      color: #ffeb3b;
+      margin: 15px 0 10px;
+      font-size: 1.4rem;
+    }
+
+    .menu-item p {
+      color: #ddd;
+      font-size: 14px;
+      min-height: 40px;
+      margin: 10px 0;
+    }
+
+    .menu-item .price {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #fff;
+      margin: 15px 0;
+    }
+
+    .menu-item button {
+      background-color: #fdd835;
+      border: none;
+      color: black;
+      font-weight: bold;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+
+    .menu-item button:hover {
+      background-color: #ffe85f;
+    }
+
+    .cart {
+      background-color: #3a3a3a;
+      padding: 25px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 600px;
+      margin: 30px auto;
+    }
+
+    .cart h2 {
+      text-align: center;
+      color: #fdd835;
+      margin-top: 0;
+    }
+
+    .order-info {
+      background: #4a4a4a;
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #fdd835;
+      font-weight: bold;
+    }
+
+    #cart-items {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+      min-height: 50px;
+    }
+
+    #cart-items li {
+      background: #4a4a4a;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #cart-items li button {
+      background: #ff4444;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    #cart-items li button:hover {
+      background: #ff6666;
+    }
+
+    #cart-total {
+      text-align: right;
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin: 20px 0;
+      color: #fdd835;
+    }
+
+    .checkout-btn {
+      background-color: #fdd835;
+      color: black;
+      border: none;
+      padding: 15px 30px;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 1.1rem;
+      display: block;
+      width: 100%;
+    }
+
+    .checkout-btn:hover {
+      background-color: #ffe85f;
+    }
+
+    .checkout-btn:disabled {
+      background-color: #666;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    .empty-cart {
+      text-align: center;
+      color: #999;
+      padding: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .menu {
+        grid-template-columns: 1fr;
+        padding: 15px;
+      }
+
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      header img {
+        height: 50px;
+      }
+
+      .menu-item {
+        width: 100%;
+      }
+
+      .order-type-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .order-type-btn {
+        width: 80%;
+        max-width: 300px;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
-    <img src=images/logo.jpg>
+    <img src="images/logo.jpg" alt="Makatata Smashburger Logo" />
+    <h1>Makatata Smashburger</h1>
   </header>
 
-  <div class="info-bar">
-    <div class="info">
-      🏍️ <span>DELIVERY 15 - 30 min</span><br>
-      ₱50.00 delivery or free with ₱500.00 spend
-    </div>
-    <div class="info">
-      🚶 <span>PICKUP 5 min</span><br>
-      No min. order
-    </div>
-  </div>
-
-  <section class="menu" id="menu">
-    <div class="menu-item">
-      <img src= images/sing.jpg
-      <div class="menu-text">
-        <h3>SMASHBURGER SINGLE</h3>
-        <p>Juicy single patty with cheese, veggies, and signature sauce.</p>
-        <p class="price">₱150.00</p>
-        <button class="add-btn" onclick="addToCart('Smashburger Single', 150)">Add to Cart</button>
-      </div>
-    </div>
-
-    <div class="menu-item">
-      <img src=images/double.jpg>
-        <h3>SMASHBURGER DOUBLE</h3>
-        <p>Two smashed patties stacked with cheese and sauce.</p>
-        <p class="price">₱220.00</p>
-        <button class="add-btn" onclick="addToCart('Smashburger Double', 220)">Add to Cart</button>
-      </div>
-    </div>
-
-    <div class="menu-item">
-      <img src=images/crazy.jpg>
-      <div class="menu-text">
-        <h3>CRAZY FRIES</h3>
-        <p>Fries topped with chopped patty and maka sauce.</p>
-        <p class="price">₱170.00</p>
-        <button class="add-btn" onclick="addToCart('Crazy Fries', 170)">Add to Cart</button>
-      </div>
-    </div>
-
-    <div class="menu-item">
-      <img src=images/icedtea.png>
-        <h3>ICED TEA</h3>
-        <p>Refreshing, perfectly brewed iced tea.</p>
-        <p class="price">₱65.00</p>
-        <button class="add-btn" onclick="addToCart('Iced Tea', 65)">Add to Cart</button>
-      </div>
+  <section class="order-type">
+    <h3>Choose Order Type</h3>
+    <div class="order-type-buttons">
+      <button class="order-type-btn" data-type="dine-in">🍽️ Dine-In</button>
+      <button class="order-type-btn" data-type="takeout">🥡 Takeout</button>
+      <button class="order-type-btn" data-type="delivery">🚚 Delivery</button>
     </div>
   </section>
 
-  <section id="cart">
-    <h2>YOUR CART</h2>
-    <div id="cart-items"></div>
-    <p id="total">Total: ₱0.00</p>
-    <button id="checkout-btn" onclick="checkout()">CHECKOUT</button>
+  <section class="menu">
+    <div class="menu-item" data-price="150">
+      <img src="images/sing.jpg" alt="Single Smashburger" />
+      <h2>Single Smashburger</h2>
+      <p>Juicy single patty with cheese, veggies, and signature sauce.</p>
+      <div class="price">₱150.00</div>
+      <button>Add to Cart</button>
+    </div>
+
+    <div class="menu-item" data-price="220">
+      <img src="images/double.jpg" alt="Double Smashburger" />
+      <h2>Double Smashburger</h2>
+      <p>Two smashed patties stacked with cheese and signature sauce.</p>
+      <div class="price">₱220.00</div>
+      <button>Add to Cart</button>
+    </div>
+
+    <div class="menu-item" data-price="170">
+      <img src="images/crazy.jpg" alt="Crazy Fries" />
+      <h2>Crazy Fries</h2>
+      <p>Fries topped with chopped patty and signature sauce.</p>
+      <div class="price">₱170.00</div>
+      <button>Add to Cart</button>
+    </div>
+
+    <div class="menu-item" data-price="65">
+      <img src="images/icedtea.png" alt="Iced Tea" />
+      <h2>Iced Tea</h2>
+      <p>Refreshing, perfectly brewed iced tea.</p>
+      <div class="price">₱65.00</div>
+      <button>Add to Cart</button>
+    </div>
   </section>
 
-  <script src="script.js"></script>
+  <section class="cart">
+    <h2>Your Cart</h2>
+    <div class="order-info" id="order-info">Please select an order type above</div>
+    <ul id="cart-items">
+      <li class="empty-cart">Your cart is empty</li>
+    </ul>
+    <div id="cart-total">Total: ₱0.00</div>
+    <button class="checkout-btn" disabled>Checkout</button>
+  </section>
+
+  <script>
+    const orderTypeButtons = document.querySelectorAll('.order-type-btn');
+    const menuButtons = document.querySelectorAll('.menu-item button');
+    const cartList = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    const orderInfo = document.getElementById('order-info');
+    const checkoutBtn = document.querySelector('.checkout-btn');
+    
+    let cart = [];
+    let total = 0;
+    let selectedOrderType = null;
+
+    // Order type selection
+    orderTypeButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        orderTypeButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        selectedOrderType = button.getAttribute('data-type');
+        
+        const typeLabels = {
+          'dine-in': '🍽️ Dine-In',
+          'takeout': '🥡 Takeout',
+          'delivery': '🚚 Delivery'
+        };
+        
+        orderInfo.textContent = `Order Type: ${typeLabels[selectedOrderType]}`;
+        checkoutBtn.disabled = cart.length === 0;
+      });
+    });
+
+    function updateCart() {
+      cartList.innerHTML = '';
+      
+      if (cart.length === 0) {
+        cartList.innerHTML = '<li class="empty-cart">Your cart is empty</li>';
+        total = 0;
+        checkoutBtn.disabled = true;
+      } else {
+        cart.forEach((item, index) => {
+          const listItem = document.createElement('li');
+          listItem.innerHTML = `
+            <span>${item.name} - ₱${item.price.toFixed(2)}</span>
+            <button onclick="removeItem(${index})">Remove</button>
+          `;
+          cartList.appendChild(listItem);
+        });
+        
+        total = cart.reduce((sum, item) => sum + item.price, 0);
+        checkoutBtn.disabled = !selectedOrderType;
+      }
+      
+      cartTotal.textContent = `Total: ₱${total.toFixed(2)}`;
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+
+    menuButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.parentElement;
+        const name = item.querySelector('h2').textContent;
+        const price = parseFloat(item.getAttribute('data-price'));
+
+        cart.push({ name, price });
+        updateCart();
+        
+        button.textContent = 'Added!';
+        button.style.backgroundColor = '#4CAF50';
+        setTimeout(() => {
+          button.textContent = 'Add to Cart';
+          button.style.backgroundColor = '#fdd835';
+        }, 500);
+      });
+    });
+
+    checkoutBtn.addEventListener('click', () => {
+      if (!selectedOrderType) {
+        alert('Please select an order type (Dine-In, Takeout, or Delivery)');
+        return;
+      }
+      
+      if (total > 0) {
+        const typeLabels = {
+          'dine-in': 'Dine-In',
+          'takeout': 'Takeout',
+          'delivery': 'Delivery'
+        };
+        
+        const itemsList = cart.map(item => `${item.name} - ₱${item.price.toFixed(2)}`).join('\n');
+        alert(`Thank you for your order!\n\nOrder Type: ${typeLabels[selectedOrderType]}\n\n${itemsList}\n\nTotal: ₱${total.toFixed(2)}`);
+        cart = [];
+        updateCart();
+      } else {
+        alert('Your cart is empty!');
+      }
+    });
+
+    window.removeItem = removeItem;
+  </script>
 </body>
 </html>

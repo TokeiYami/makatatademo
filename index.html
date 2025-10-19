@@ -83,6 +83,21 @@
       margin: 0 auto;
     }
 
+    .bundles-section {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .bundles-section .menu-item {
+      flex: 0 1 280px;
+      max-width: 350px;
+    }
+
     .menu-item {
       background-color: #3a3a3a;
       border-radius: 12px;
@@ -658,6 +673,46 @@
         <div class="traces">May be processed in facility with allergens.</div>
       </div>
       <div class="price">₱65.00</div>
+      <button>Add to Cart</button>
+    </div>
+  </section>
+
+  <section class="bundles-section">
+    <div class="menu-item" data-price="260">
+      <img src="images/bundleone.jpg" alt="Bundle 1" onerror="this.src='images/sing.jpg'" />
+      <h2>Bundle 1 - Single Combo</h2>
+      <p>Single Smashburger + Plain Fries + Iced Tea. Perfect meal deal!</p>
+      <div class="allergen-info">
+        <strong>Possible Allergens:</strong>
+        <ul>
+          <li>Gluten</li>
+          <li>Dairy</li>
+          <li>Eggs</li>
+          <li>Soy</li>
+          <li>Sesame</li>
+        </ul>
+        <div class="traces">May contain traces of: mustard, sulfites, wheat.</div>
+      </div>
+      <div class="price">₱260.00</div>
+      <button>Add to Cart</button>
+    </div>
+
+    <div class="menu-item" data-price="330">
+      <img src="images/bundletwo.jpg" alt="Bundle 2" onerror="this.src='images/double.jpg'" />
+      <h2>Bundle 2 - Double Combo</h2>
+      <p>Double Smashburger + Plain Fries + Iced Tea. Ultimate value meal!</p>
+      <div class="allergen-info">
+        <strong>Possible Allergens:</strong>
+        <ul>
+          <li>Gluten</li>
+          <li>Dairy</li>
+          <li>Eggs</li>
+          <li>Soy</li>
+          <li>Sesame</li>
+        </ul>
+        <div class="traces">May contain traces of: mustard, sulfites, wheat.</div>
+      </div>
+      <div class="price">₱330.00</div>
       <button>Add to Cart</button>
     </div>
   </section>
